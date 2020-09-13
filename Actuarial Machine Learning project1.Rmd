@@ -12,7 +12,7 @@ output:
 #--Task 1: Data Preprocessing --#
 
 
-# Load various packages
+# Load 2 packages
 #install.packages("caTools")
 ```{r setup, include=FALSE}
 library(caTools)
@@ -35,7 +35,7 @@ library(ggplot2)
 # Claim: 0=No dental claim, 1=Yes had dental claim
 # Paid: The amount paid for the dental claim
 ```{r setup, include=FALSE}
-Dental <- read.csv("DentalClaims.csv", na.strings=c("")) #Replace any empty cells with NA
+Dental <- read.csv("DentalClaims.csv", na.strings=c("")) 
 
 str(Dental)
 ```
@@ -61,7 +61,7 @@ Dental$Provider <- factor(Dental$Provider,
                           levels = c('N','A','B','C'),
                           labels = c(0,1,2,3))
 ```
-#Check
+#Check(je vérifie)
 ```{r setup, include=FALSE}
 str(Dental)
 ```
@@ -91,7 +91,7 @@ DentalClaims$Claim <- NULL
 ```{r setup, include=FALSE}
 set.seed(123)
 ```
-###split the dataset into training vs. test
+###split the dataset into training vs. test ici le ratio vaut 75%
 ```{r setup, include=FALSE}
 split = sample.split(DentalClaims$Paid, SplitRatio = 0.75)
 training_set = subset(DentalClaims, split == TRUE)
@@ -168,12 +168,10 @@ DentalBinary <- read.csv("DentalClaims.csv", na.strings=c("")) #Replace any empt
 DentalBinary <- DentalBinary[,c(2,3,4,6,8)]
 ```
 ###set the seed
-#?set.seed()
 ```{r setup, include=FALSE}
 set.seed(123)
 ```
 ###split the dataset into training vs. test datasets
-#?sample.split()
 ```{r setup, include=FALSE}
 split = sample.split(DentalBinary$Claim, SplitRatio = 0.75)
 training_setGLM = subset(DentalBinary, split == TRUE)
